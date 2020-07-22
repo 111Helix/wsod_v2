@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block htmlHead %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu/dist/metisMenu.min.css">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/metismenu"></script>
+    <link rel="stylesheet" href="{% static 'blog/main2.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/main3.css' %}">
+    <script src="{% static 'blog/main2.js' %}"></script>
+    <script src="{% static 'blog/main3.js' %}"></script>
+    {% endblock htmlHead %}
+    <title>{% block htmlTitle %}Web scraping database{% endblock htmlTitle %}</title>
+</head>
+<body>
+    {% block verticalNavBar %}
+    <!-- Start of vertical navigation bar -->
+    <div class="vertical-nav overflow-auto bg-dark" id="sidebar">
+        <!-- Registration area -->
+        <div class="py-4 px-3 bg-dark">
+            <div class="media-body">
+                <h4 class="font-weight-white" style="color: wheat">Website name</h4>
+                <p class="font-weight-grey text-muted">An online database developed by Poundpound and Kris</p>
+                <button type="button" class="btn btn-outline-primary mx-3">Log-in</button>
+                <button type="button" class="btn btn-outline-success mx-3" href="register/">Sign-up</button>
+            </div>
+        </div>
+        <!-- End of registration area -->
+
+        <nav class="sidebar-nav">
+            <ul class="metismenu" id="menu1">
+                <li>
+                    <a class="has-arrow" aria-expanded="false" href="#">User</a>
+                    <ul class="mm-collapse">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Saved topics</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" aria-expanded="false" href="#">Website</a>
+                    <ul class="mm-collapse" style="height: 0px;">
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </li>
+                <li id="removable">
+                    <a class="has-arrow" aria-expanded="false" href="#">Scraped topics</a>
+                    <ul class="mm-collapse" style="height: 0px;">
+                    <li>
+                        <form action="">
+                            <div class="form-group m-3">
+                                <input type="text" class="form-control" id="searchInDatabase" placeholder="Search for a topic">
+                            </div>
+                        </form>
+                        <a class="has-arrow" aria-expanded="false" href="#">Category 1</a>
+                        <ul class="mm-collapse" style="height: 0px;">
+                            <li><a href="#">Topic 1</a></li>
+                            <li><a href="#">Topic 2</a></li>
+                            <li><a href="#">Topic 3</a></li>
+                            <li>
+                                <a class="has-arrow" aria-expanded="false" href="#">Topic 4</a>
+                                <ul class="mm-collapse" style="height: 0px;">
+                                    <li><a href="#">Sub topic 1</a></li>
+                                    <li><a href="#">Sub topic 2</a></li>
+                                    <li><a href="#">Sub topic 3</a></li>
+                                    <li>
+                                        <a class="has-arrow" aria-expanded="false" href="#">Sub topic 4</a>
+                                        <ul class="mm-collapse" style="height: 0px;">
+                                            <li><a href="#">Sub sub topic 1</a></li>
+                                            <li><a href="#">Sub sub topic 2</a></li>
+                                            <li><a href="#">Sub sub topic 3</a></li>
+                                            <li><a href="#">Sub sub topic 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" aria-expanded="false" href="#">Category 2</a>
+                        <ul class="mm-collapse">
+                            <li><a href="#">Topic 1</a></li>
+                            <li><a href="#">Topic 2</a></li>
+                            <li><a href="#">Topic 3</a></li>
+                            <li><a href="#">Topic 4</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- End of vertical navigation bar -->
+    {% endblock verticalNavBar %}
+
+    <div class="page-content p-5" id="content">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% block content1 %}{% endblock content1 %}
+    </div>
+
+    <hr> <!-- Content breaker -->
+
+    <div class="page-content p-5" id="content">
+        {% block content2 %}{% endblock content2 %}
+    </div>
+
+    <hr> <!-- Content breaker -->
+
+    <div class="page-content p-5" id="content">
+        {% block content3 %}{% endblock content3 %}
+    </div>
+    
+</body>
+</html>

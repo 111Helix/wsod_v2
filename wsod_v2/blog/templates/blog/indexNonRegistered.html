@@ -1,0 +1,84 @@
+{% extends 'blog/navbarbase.html' %}
+{% load static %}
+
+{% block content1 %}
+    <!-- Start of new topics section-->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Newly added topics 1</h5>
+                        <p class="card-text">Write ups on the topic</p>
+                        <a href="#" class="btn btn-primary">See the whole article</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Newly added topics 2</h5>
+                        <p class="card-text">Write ups on the topic</p>
+                        <a href="#" class="btn btn-primary">See the whole article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- End of new topics section -->
+{% endblock content1 %}
+
+{% block content2 %}
+    <!-- Start of voting section -->
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-dark" role="alert">
+                    <h4 class="alert-heading">Voting topic 1</h4>
+                    <p>Simple description of topic</p>
+                    <hr>
+                    <button type="button" class="btn btn-success" disabled>Yes</button>
+                    <button type="button" class="btn btn-danger" disabled>No</button>
+                    <p style="color: grey;"><i>Only registered users can vote</i></p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-dark" role="alert">
+                    <h4 class="alert-heading">Voting topic 2</h4>
+                    <p>Simple description of topic</p>
+                    <hr>
+                    <button type="button" class="btn btn-success" disabled>Yes</button>
+                    <button type="button" class="btn btn-danger" disabled>No</button>
+                    <p style="color: grey;"><i>Only registered users can vote</i></p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-dark" role="alert">
+                    <h4 class="alert-heading">Voting topic 3</h4>
+                    <p>Simple description of topic</p>
+                    <hr>
+                    <button type="button" class="btn btn-success" disabled>Yes</button>
+                    <button type="button" class="btn btn-danger" disabled>No</button>
+                    <p style="color: grey;"><i>Only registered users can vote</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Topic suggestion" aria-label="Topic suggestion" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" disabled>Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- End of voting section -->
+{% endblock content2 %}
+
+{% block content3 %}
+    <!-- Start of news and updates section -->
+        <div class="jumbotron">
+            <h2>Update alpha 1.0.0</h2>
+            <p>Contents of update alpha 1.0.0</p>
+            <a class="btn btn-lg btn-primary" href="#">Documentation</a>
+        </div>
+    <!-- End of news and updates section -->
+{% endblock content3 %}
