@@ -15,3 +15,6 @@ def voteResults(request):
 
 def roadMap(request):
     return render(request, "blog/roadMap.html")
+
+def aboutUs(request):
+    return render(request, "blog/aboutUs.html")
