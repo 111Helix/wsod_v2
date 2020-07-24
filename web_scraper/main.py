@@ -24,9 +24,12 @@ from functions import *
 
 
 def main():
+    # testing 
     user_input = input("What do you want to search? ")
     titles, links, descriptions = get_links(user_input)
     print(links)
+    
+
 
 
 main()
