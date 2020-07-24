@@ -50,7 +50,15 @@
                 <li>
                     <a class="has-arrow" aria-expanded="false" href="#">Website</a>
                     <ul class="mm-collapse" style="height: 0px;">
-                        <li><a href="{% url "blog_news" %}">News</a></li>
+                        <li>
+                            <a class="has-arrow" aria-expanded="false" href="#">News</a>
+                            <ul class="mm-collapse" style="height: 0px;">
+                                <li><a href="{% url "blog_verHistory" %}">Version history</a></li>
+                                <li><a href="{% url "blog_bugFix" %}">Bug fixes</a></li>
+                                <li><a href="{% url "blog_voteResults" %}">Voting results</a></li>
+                                <li><a href="{% url "blog_roadMap" %}">Road maps</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Documentation</a></li>
                     </ul>
