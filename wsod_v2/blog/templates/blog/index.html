@@ -1,14 +1,16 @@
-{% extends 'blog/navbarbase.html' %}
-{% load static %}
-
+{% extends "blog/base.html" %}
 {% block content1 %}
     <!-- Start of new topics section-->
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Newly added topics 1</h5>
-                        <p class="card-text">Write ups on the topic</p>
+                        <h5 class="card-title">Toothpaste!</h5>
+                        <p class="card-text">
+                        Our newly added topic is toothpaste! Toothpaste is a vital necessity as we humans use it everyday in order to maintain our hygiene to a healthy standard.
+                        It's an abrasive that aids in removing dental plaque and food from the teeth, assists in suppressing halitosis and delivers active ingredients (most commonly fluoride)
+                        to help prevent tooth decay and gum disease. 
+                        </p>
                         <a href="#" class="btn btn-primary">See the whole article</a>
                     </div>
                 </div>
@@ -63,7 +65,7 @@
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Topic suggestion" aria-label="Topic suggestion" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Topic suggestion" aria-label="Topic suggestion" aria-describedby="button-addon2" disabled>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" disabled>Submit</button>
                     </div>

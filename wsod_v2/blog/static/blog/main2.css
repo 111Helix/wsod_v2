@@ -18,6 +18,10 @@
   transition: all 0.4s;
 }
 
+.text-center {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   #sidebar {
   margin-left: -17rem;

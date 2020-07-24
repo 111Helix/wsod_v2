@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block content1 %}
+<!-- start of title area -->
+    <div class="container">
+        <h1 class="display-4 text-center">Road Maps</h1>
+        <p class="text-center" style="color: grey;"><i>Current version: Alpha 1.0.0</i></p> <!-- This should become dynamic, so that with each new update it automatically changes to the current version -->
+    </div>
+<!-- end of title area -->
+{% endblock content1 %}
+
+{% block content2 %}
+<!-- start of news article content -->
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">2020 Road map</h5>
+                    <p style="color: grey;"><i>Date published | Author name</i></p>
+                    <p class="card-text">Detailed context</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end of news article content -->
+{% endblock content2 %}

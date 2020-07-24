@@ -28,7 +28,7 @@
         <!-- Registration area -->
         <div class="py-4 px-3 bg-dark">
             <div class="media-body">
-                <h4 class="font-weight-white" style="color: wheat">Website name</h4>
+                <h4 class="font-weight-white" style="color: wheat">Web scraping database</h4>
                 <p class="font-weight-grey text-muted">An online database developed by Poundpound and Kris</p>
                 <button type="button" class="btn btn-outline-primary mx-3">Log-in</button>
                 <button type="button" class="btn btn-outline-success mx-3" href="register/">Sign-up</button>
@@ -36,20 +36,31 @@
         </div>
         <!-- End of registration area -->
 
+        <!-- start of menus -->
         <nav class="sidebar-nav">
             <ul class="metismenu" id="menu1">
+                <a href="{% url "blog_index" %}">Home</a> <!-- The "blog_index" refers to the name in the urls.py of the blog app -->
                 <li>
                     <a class="has-arrow" aria-expanded="false" href="#">User</a>
                     <ul class="mm-collapse">
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Saved topics</a></li>
+                        <li><a>Log-in to access this feature</a></li>
+                        <li><a>Log-in to access this feature</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="has-arrow" aria-expanded="false" href="#">Website</a>
                     <ul class="mm-collapse" style="height: 0px;">
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">About Us</a></li>
+                        <li>
+                            <a class="has-arrow" aria-expanded="false" href="#">News</a>
+                            <ul class="mm-collapse" style="height: 0px;">
+                                <li><a href="{% url "blog_verHistory" %}">Version history</a></li>
+                                <li><a href="{% url "blog_bugFix" %}">Bug fixes</a></li>
+                                <li><a href="{% url "blog_voteResults" %}">Voting results</a></li>
+                                <li><a href="{% url "blog_roadMap" %}">Road maps</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url "blog_aboutUs" %}">About Us</a></li>
+                        <li><a href="#">Documentation</a></li>
                     </ul>
                 </li>
                 <li id="removable">
@@ -98,32 +109,26 @@
                 </li>
             </ul>
         </nav>
+        <!-- end of menus -->
     </div>
     <!-- End of vertical navigation bar -->
     {% endblock verticalNavBar %}
 
     <div class="page-content p-5" id="content">
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-            {% endfor %}
-        {% endif %}
         {% block content1 %}{% endblock content1 %}
     </div>
-
+    
     <hr> <!-- Content breaker -->
-
+    
     <div class="page-content p-5" id="content">
         {% block content2 %}{% endblock content2 %}
     </div>
-
+    
     <hr> <!-- Content breaker -->
-
+    
     <div class="page-content p-5" id="content">
         {% block content3 %}{% endblock content3 %}
     </div>
-    
+
 </body>
 </html>
