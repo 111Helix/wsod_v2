@@ -13,3 +13,8 @@
 
 ## 3. Getting started: Before you start coding
 1. Before coding, please ensure you are in the virtual environment. This can be done by typing: *activate wsod_v2_env* **within the wsod_v2 directory in the anaconda prompt.**
+
+## 4. Getting started: Running the server
+1. Open anaconda prompt (In wsod_v2 directory)
+2. Type: *python manage.py runserver*
+3. Copy the url in anaconda prompt and paste it in your web browser
