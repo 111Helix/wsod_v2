@@ -10,7 +10,7 @@ from requests.exceptions import RequestException
 from contextlib import closing  # https://docs.python.org/3/library/contextlib.html     brings in the with() statement also, allowing our try.. except.. finally.. stuff to be encapsulated
 from bs4 import BeautifulSoup # https://www.crummy.com/software/BeautifulSoup/bs4/doc/  will help with manipulative raw html data
 import os
-
+from urllib.request import urlretrieve    # to save photos from url
 
 def get_html(url):      # Gets HTML of url inputted
     try:
@@ -25,9 +25,9 @@ def get_html(url):      # Gets HTML of url inputted
     except RequestException as error:
         print("\nERROR trying to reach " + str(url) + " : " + str(error))     # error message when url can't be reached
 
-def get_links(user_input): # searches input into google and returns 3 lists: titles, links and descriptions, limited only to the first page of google results
+def get_links(search_query): # searches input into google and returns 3 lists: titles, links and descriptions, limited only to the first page of google results
     
-    google_url = "https://google.com/search?q="+user_input.replace(" ","+")                        # replaces spaces with pluses so that it's in the right format for google urls  AND
+    google_url = "https://google.com/search?q="+search_query.replace(" ","+")                        # replaces spaces with pluses so that it's in the right format for google urls  AND
     soup = get_html(google_url)                                                                    # appends user_input to url so it google searches
     
    
@@ -57,8 +57,32 @@ def get_links(user_input): # searches input into google and returns 3 lists: tit
     
     return titles, links, descriptions
 
-def get_pics(user_input):           # extract all detected images (or urls of them) from user_input (which is a url)
-    print("ayooo")
+def save_pics(search_query):           # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
+    
+    imgur_url = "https://www.imgur.com/search?q="+search_query.replace(" ","+")  
+    soup = get_html(imgur_url)
+    divided = soup.find_all("a",{"class":"image-list-link"})            # divided only contains things within group a
+
+    images = []
+    for tag in divided:                                             # looping through each section, only getting those with the img tag
+        images.append(tag.find("img"))              
+    
+    sources = []
+    for image in images:                                            # looping through each image
+        sources.append("https:"+image['src'][:-5]+".jpg")           # the -5 is to get rid of a b existing at the end of every image link, then I added the .jpg back
+    
+    print("Found " + str(len(sources))+" links.")
+    folder = search_query.replace(" ","_")
+    path = str(os.getcwd()) + "\\" + str(folder)
+    if os.path.isdir(path) == False:
+        os.mkdir(folder)
+        print("Creating folder \"folder\"...")
+    os.chdir(path)
+
+    print("Saving photos...")
+    for files in sources:
+        urlretrieve(files,str(files[20:]))                          # saving file, removing the first 20 characters which are all "https://i.imgur.com/"
+        print("ding")
 
 
     #note: how to os https://appdividend.com/2019/02/06/python-os-module-tutorial-with-example/ https://www.pythonforbeginners.com/os/pythons-os-module/
