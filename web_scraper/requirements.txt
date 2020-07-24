@@ -1,0 +1,7 @@
+contextlib
+requests
+get
+beautifulsoup4
+lxml
+Pillow
+os
