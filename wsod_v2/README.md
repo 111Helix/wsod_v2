@@ -5,6 +5,7 @@
 2. Follow the installation process.
 3. Get the **Windows 64 bit** version of Anaconda here => https://www.anaconda.com/products/individual
 4. Follow Anaconda's guide on the installation process here => https://docs.anaconda.com/anaconda/install/windows/
+5. Clone the wsod_v2 repository
 
 ## 2. Getting started: Replicating the virtual environment
 1. Open the **anaconda prompt** and naviagate to the **directory of wsod_v2.**
