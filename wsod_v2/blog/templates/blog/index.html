@@ -1,6 +1,4 @@
-{% extends 'blog/navbarbase.html' %}
-{% load static %}
-
+{% extends "blog/base.html" %}
 {% block content1 %}
     <!-- Start of new topics section-->
         <div class="row">
@@ -63,7 +61,7 @@
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Topic suggestion" aria-label="Topic suggestion" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Topic suggestion" aria-label="Topic suggestion" aria-describedby="button-addon2" disabled>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" disabled>Submit</button>
                     </div>
