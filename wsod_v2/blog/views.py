@@ -18,3 +18,6 @@ def roadMap(request):
 
 def aboutUs(request):
     return render(request, "blog/aboutUs.html")
+
+def docs(request):
+    return render(request, "blog/docs.html")
