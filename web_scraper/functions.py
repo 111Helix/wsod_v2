@@ -57,11 +57,11 @@ def get_links(search_query): # searches input into google and returns 3 lists: t
     
     return titles, links, descriptions
 
-def save_pics(search_query):           # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
+def imgur_save_pics(search_query):           # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
     
     imgur_url = "https://www.imgur.com/search?q="+search_query.replace(" ","+")  
     soup = get_html(imgur_url)
-    divided = soup.find_all("a",{"class":"image-list-link"})            # divided only contains things within group a
+    divided = soup.find_all("a",{"class":"image-list-link"})            # divided only contains things within group a with the class name "image-list-link", thank you imgur for naming your class that
 
     images = []
     for tag in divided:                                             # looping through each section, only getting those with the img tag
@@ -71,8 +71,12 @@ def save_pics(search_query):           # extract all detected images (or urls of
     for image in images:                                            # looping through each image
         sources.append("https:"+image['src'][:-5]+".jpg")           # the -5 is to get rid of a b existing at the end of every image link, then I added the .jpg back
     
+    if sources == []:
+        print("\nError!, no sources detected\n")
+        return
+
     print("Found " + str(len(sources))+" links.")
-    folder = search_query.replace(" ","_")
+    folder = "imgur_"+search_query.replace(" ","_")
     path = str(os.getcwd()) + "\\" + str(folder)
     if os.path.isdir(path) == False:
         os.mkdir(folder)
@@ -82,8 +86,36 @@ def save_pics(search_query):           # extract all detected images (or urls of
     print("Saving photos...")
     for files in sources:
         urlretrieve(files,str(files[20:]))                          # saving file, removing the first 20 characters which are all "https://i.imgur.com/"
-        print("ding")
+    
+    print("done!")
 
+def google_save_pics(search_query):     # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
 
-    #note: how to os https://appdividend.com/2019/02/06/python-os-module-tutorial-with-example/ https://www.pythonforbeginners.com/os/pythons-os-module/
-# e.g.
+    google_url = "https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={query}&oq={query}&gs_l=img".format(query = search_query.replace(" ","+"))
+    soup = get_html(google_url)
+    sources = []
+
+    for image in soup.select("img"):
+        if image['class'][0] == "t0fcAb":
+            sources.append(image['src'])
+
+    
+    if sources == []:
+        print("\nError!, no sources detected\n")
+        return
+    
+    print("Found " + str(len(sources))+" links.")
+    folder = "google_"+search_query.replace(" ","_")
+    path = str(os.getcwd()) + "\\" + str(folder)
+    if os.path.isdir(path) == False:
+        os.mkdir(folder)
+        print("Creating folder \"folder\"...")
+    os.chdir(path)
+
+    print("Saving photos...")
+    for files in sources:
+        print(str(files[54:]))
+        urlretrieve(files,str(files[54:]))                          # saving file, removing the first 54 characters which are all "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc"
+        
+    print("Done!")
+    
