@@ -11,6 +11,7 @@
 
 {% block content2 %}
 <!-- start of news article content -->
+{% for version in version %}
     <div class="row">
         <div class="col">
             <div class="card">
@@ -22,5 +23,7 @@
             </div>
         </div>
     </div>
+    <hr>
+{% endfor %}
 <!-- end of news article content -->
 {% endblock content2 %}

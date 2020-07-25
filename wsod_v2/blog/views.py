@@ -37,7 +37,7 @@ def index(request): #This is routes what users will see on the homepage
 # ─── VERSION HISTORY PAGE ───────────────────────────────────────────────────────
 def verHistory(request):
     context = {
-        "version": version.objects.all().order_by("-date_posted")[0]
+        "version": version.objects.all().order_by("-date_posted")
     }
     return render(request, "blog/verHistory.html", context)
 
