@@ -1,16 +1,16 @@
 {% extends "blog/base.html" %}
+{% block htmlTitle %}WSD - Index{% endblock htmlTitle %}
 {% block content1 %}
     <!-- Start of new topics section-->
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Toothpaste!</h5>
-                        <p class="card-text">
-                        Our newly added topic is toothpaste! Toothpaste is a vital necessity as we humans use it everyday in order to maintain our hygiene to a healthy standard.
-                        It's an abrasive that aids in removing dental plaque and food from the teeth, assists in suppressing halitosis and delivers active ingredients (most commonly fluoride)
-                        to help prevent tooth decay and gum disease. 
-                        </p>
+                        {% for post in posts1 %}
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted }}</i></p>
+                            <p class="card-text">{{ post.content }}</p>
+                        {% endfor %} 
                         <a href="#" class="btn btn-primary">See the whole article</a>
                     </div>
                 </div>
@@ -18,8 +18,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Newly added topics 2</h5>
-                        <p class="card-text">Write ups on the topic</p>
+                        {% for post in posts2 %}
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted }}</i></p>
+                            <p class="card-text">{{ post.content }}</p>
+                        {% endfor %} 
                         <a href="#" class="btn btn-primary">See the whole article</a>
                     </div>
                 </div>
@@ -32,34 +35,40 @@
     <!-- Start of voting section -->
         <div class="row">
             <div class="col">
-                <div class="alert alert-dark" role="alert">
-                    <h4 class="alert-heading">Voting topic 1</h4>
-                    <p>Simple description of topic</p>
-                    <hr>
-                    <button type="button" class="btn btn-success" disabled>Yes</button>
-                    <button type="button" class="btn btn-danger" disabled>No</button>
-                    <p style="color: grey;"><i>Only registered users can vote</i></p>
-                </div>
+                {% for post in vote1 %}
+                    <div class="alert alert-dark" role="alert">
+                        <h4 class="alert-heading">{{ post.topic }}</h4>
+                        <p>{{ post.info }}</p>
+                        <hr>
+                        <button type="button" class="btn btn-success" disabled>Yes</button>
+                        <button type="button" class="btn btn-danger" disabled>No</button>
+                        <p style="color: grey;"><i>Only registered users can vote</i></p>
+                    </div>
+                {% endfor %}
             </div>
             <div class="col">
-                <div class="alert alert-dark" role="alert">
-                    <h4 class="alert-heading">Voting topic 2</h4>
-                    <p>Simple description of topic</p>
-                    <hr>
-                    <button type="button" class="btn btn-success" disabled>Yes</button>
-                    <button type="button" class="btn btn-danger" disabled>No</button>
-                    <p style="color: grey;"><i>Only registered users can vote</i></p>
-                </div>
+                {% for post in vote2 %}
+                    <div class="alert alert-dark" role="alert">
+                        <h4 class="alert-heading">{{ post.topic }}</h4>
+                        <p>{{ post.info }}</p>
+                        <hr>
+                        <button type="button" class="btn btn-success" disabled>Yes</button>
+                        <button type="button" class="btn btn-danger" disabled>No</button>
+                        <p style="color: grey;"><i>Only registered users can vote</i></p>
+                    </div>
+                {% endfor %}
             </div>
             <div class="col">
-                <div class="alert alert-dark" role="alert">
-                    <h4 class="alert-heading">Voting topic 3</h4>
-                    <p>Simple description of topic</p>
-                    <hr>
-                    <button type="button" class="btn btn-success" disabled>Yes</button>
-                    <button type="button" class="btn btn-danger" disabled>No</button>
-                    <p style="color: grey;"><i>Only registered users can vote</i></p>
-                </div>
+                {% for post in vote3 %}
+                    <div class="alert alert-dark" role="alert">
+                        <h4 class="alert-heading">{{ post.topic }}</h4>
+                        <p>{{ post.info }}</p>
+                        <hr>
+                        <button type="button" class="btn btn-success" disabled>Yes</button>
+                        <button type="button" class="btn btn-danger" disabled>No</button>
+                        <p style="color: grey;"><i>Only registered users can vote</i></p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="row">
@@ -78,9 +87,11 @@
 {% block content3 %}
     <!-- Start of news and updates section -->
         <div class="jumbotron">
-            <h2>Update alpha 1.0.0</h2>
-            <p>Contents of update alpha 1.0.0</p>
-            <a class="btn btn-lg btn-primary" href="#">Documentation</a>
+            {% for post in upInfo %}
+                <h2>{{ post.version }}</h2>
+                <p>{{ post.content }}</p>
+            {% endfor %}
+            <a class="btn btn-lg btn-primary" href="{% url "blog_docs" %}">Documentation</a>
         </div>
     <!-- End of news and updates section -->
 {% endblock content3 %}
