@@ -7,7 +7,7 @@
                 {% for post in posts %}
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h5 class="card-title">{{ post.title }} <span class="badge badge-success">New topic!</span></h5>
                             <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted|date:"d/m/Y" }}</i></p>
                             <p class="card-text">{{ post.content }}</p>
                             <a href="#" class="btn btn-primary">See the whole article</a>
@@ -76,6 +76,7 @@
     <!-- Start of news and updates section -->
         <div class="jumbotron">
             <h2>{{ version.version }}</h2>
+            <p style="color: grey;"><i>Posted on: {{ version.date_posted|date:"d/m/Y" }}</i></p>
             <p>{{ version.content }}</p>
             <a class="btn btn-lg btn-primary" href="{% url "blog_docs" %}">Documentation</a>
         </div>

@@ -25,7 +25,7 @@ vote3 = [
 
 def index(request): #This is routes what users will see on the homepage
     context = { #context here allows the data (posts above) to be passed and accessed by the template
-        "posts": Post.objects.all().order_by("-date_posted")[:2],#Post.objects.all(),#Post.objects.all().order_by("-date_posted")[0], #This is the key for the context variable, allows this to be returned to the template
+        "posts": Post.objects.all().order_by("-date_posted")[:1],#Post.objects.all(),#Post.objects.all().order_by("-date_posted")[0], #This is the key for the context variable, allows this to be returned to the template
         "vote1": vote1,
         "vote2": vote2,
         "vote3": vote3,
@@ -34,8 +34,14 @@ def index(request): #This is routes what users will see on the homepage
     return render(request, "blog/index.html", context) #"blog/indexNonRegistered.html" = name_of_app/template_name_to_render
 # ─── END INDEX PAGE ─────────────────────────────────────────────────────────────
 
+# ─── VERSION HISTORY PAGE ───────────────────────────────────────────────────────
 def verHistory(request):
-    return render(request, "blog/verHistory.html")
+    context = {
+        "version": version.objects.all().order_by("-date_posted")[0]
+    }
+    return render(request, "blog/verHistory.html", context)
+
+# ─── END VERSION HISTORY PAGE ───────────────────────────────────────────────────
 
 def bugFix(request):
     return render(request, "blog/bugFix.html")
