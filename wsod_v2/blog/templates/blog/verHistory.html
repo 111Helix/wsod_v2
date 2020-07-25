@@ -15,9 +15,9 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Update version 1.0.0</h5>
-                    <p style="color: grey;"><i>Date published | Author name</i></p>
-                    <p class="card-text">Detailed context</p>
+                    <h2>{{ version.version }}</h2>
+                    <p style="color: grey;"><i>Posted on: {{ version.date_posted|date:"d/m/Y" }}</i></p>
+                    <p>{{ version.content }}</p>
                 </div>
             </div>
         </div>
