@@ -114,8 +114,8 @@ def google_save_pics(search_query):     # extract all detected images (or urls o
 
     print("Saving photos...")
     for files in sources:
-        print(str(files[54:]))
-        urlretrieve(files,str(files[54:]))                          # saving file, removing the first 54 characters which are all "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc"
+    
+        urlretrieve(files,str(files[54:]+".jpg"))                          # saving file, removing the first 54 characters which are all "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc"
         
     print("Done!")
     
