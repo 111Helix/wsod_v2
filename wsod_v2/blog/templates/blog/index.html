@@ -4,28 +4,16 @@
     <!-- Start of new topics section-->
         <div class="row">
             <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        {% for post in posts1 %}
+                {% for post in posts %}
+                    <div class="card">
+                        <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
-                            <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted }}</i></p>
+                            <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted|date:"d/m/Y" }}</i></p>
                             <p class="card-text">{{ post.content }}</p>
-                        {% endfor %} 
-                        <a href="#" class="btn btn-primary">See the whole article</a>
+                            <a href="#" class="btn btn-primary">See the whole article</a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        {% for post in posts2 %}
-                            <h5 class="card-title">{{ post.title }}</h5>
-                            <p style="color: grey;"><i>{{ post.author }} | {{ post.date_posted }}</i></p>
-                            <p class="card-text">{{ post.content }}</p>
-                        {% endfor %} 
-                        <a href="#" class="btn btn-primary">See the whole article</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     <!-- End of new topics section -->
@@ -87,10 +75,8 @@
 {% block content3 %}
     <!-- Start of news and updates section -->
         <div class="jumbotron">
-            {% for post in upInfo %}
-                <h2>{{ post.version }}</h2>
-                <p>{{ post.content }}</p>
-            {% endfor %}
+            <h2>{{ version.version }}</h2>
+            <p>{{ version.content }}</p>
             <a class="btn btn-lg btn-primary" href="{% url "blog_docs" %}">Documentation</a>
         </div>
     <!-- End of news and updates section -->

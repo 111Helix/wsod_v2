@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{% static 'blog/main3.css' %}">
     <script src="{% static 'blog/main2.js' %}"></script>
     <script src="{% static 'blog/main3.js' %}"></script>
+    <base href="{% url "blog_index" %}">
     {% endblock htmlHead %}
     <title>{% block htmlTitle %}WSD{% endblock htmlTitle %}</title>
 </head>
