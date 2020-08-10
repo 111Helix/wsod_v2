@@ -98,7 +98,6 @@ def google_save_pics(search_query):     # extract all detected images (or urls o
     for image in soup.select("img"):
         if image['class'][0] == "t0fcAb":
             sources.append(image['src'])
-
     
     if sources == []:
         print("\nError!, no sources detected\n")
@@ -114,7 +113,6 @@ def google_save_pics(search_query):     # extract all detected images (or urls o
 
     print("Saving photos...")
     for files in sources:
-    
         urlretrieve(files,str(files[54:]+".jpg"))                          # saving file, removing the first 54 characters which are all "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc"
         
     print("Done!")

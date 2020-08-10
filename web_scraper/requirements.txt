@@ -5,3 +5,9 @@ beautifulsoup4
 lxml
 Pillow
 os
+sys
+
+
+selenium
+# chromedriver       #not a library, but a chrome driver of selenium, executable file "chromedriver.exe" MUST be in the same directory as main.py
+# google chrome
