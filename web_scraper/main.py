@@ -32,15 +32,18 @@ def main():
     # testing get_pics() function
 
 
-    print("\nHello! Here are our options:\n\t1. Download images from imgur.com\n\t2. Download images from google\n\t3. Extract links from a google search")
-    user_input = input("Please input 1,2 or 3: ")
+    print("\nHello! Here are our options:\n\t1. Download images from imgur.com\n\t2. Download images from google (small version)\n\t3. Download images from google(big version)\n\t4. Extract links from a google search")
+    user_input = input("Please input 1,2,3 or 4: ")
     if int(user_input) == 1:
         user_input = (input("Please enter your search query: "))
         imgur_save_pics(user_input)
     elif int(user_input) == 2:
         user_input = (input("Please enter your search query: "))
-        google_save_pics(user_input)
+        google_save_pics_small(user_input)
     elif int(user_input) == 3:
+        user_input = (input("Please enter your search query: "))
+        google_save_pics_big(user_input)
+    elif int(user_input) == 4:
         user_input = (input("Please enter your search query: "))
         titles, links, descriptions = get_links(user_input)
         print("\nPrinting titles, links, then descriptions\n")

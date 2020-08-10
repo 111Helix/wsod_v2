@@ -11,6 +11,9 @@ from contextlib import closing  # https://docs.python.org/3/library/contextlib.h
 from bs4 import BeautifulSoup # https://www.crummy.com/software/BeautifulSoup/bs4/doc/  will help with manipulative raw html data
 import os
 from urllib.request import urlretrieve    # to save photos from url
+from selenium import webdriver                      # to open a browser on its own
+from selenium.webdriver.common.keys import Keys     # to scroll for more images
+from selenium import *
 
 def get_html(url):      # Gets HTML of url inputted
     try:
@@ -89,7 +92,7 @@ def imgur_save_pics(search_query):           # extract all detected images (or u
     
     print("done!")
 
-def google_save_pics(search_query):     # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
+def google_save_pics_small(search_query):     # extract all detected images (or urls of them) from user_input (which is the search query). Returns search query and folder containing image links
 
     google_url = "https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={query}&oq={query}&gs_l=img".format(query = search_query.replace(" ","+"))
     soup = get_html(google_url)
@@ -104,7 +107,7 @@ def google_save_pics(search_query):     # extract all detected images (or urls o
         return
     
     print("Found " + str(len(sources))+" links.")
-    folder = "google_"+search_query.replace(" ","_")
+    folder = "google_small_"+search_query.replace(" ","_")
     path = str(os.getcwd()) + "\\" + str(folder)
     if os.path.isdir(path) == False:
         os.mkdir(folder)
@@ -116,4 +119,45 @@ def google_save_pics(search_query):     # extract all detected images (or urls o
         urlretrieve(files,str(files[54:]+".jpg"))                          # saving file, removing the first 54 characters which are all "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc"
         
     print("Done!")
+
+def google_save_pics_big(search_query):
+    browser = webdriver.Chrome(executable_path=os.getcwd()+"\chromedriver.exe")
+    browser.get("https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={query}&oq={query}&gs_l=img".format(query = search_query.replace(" ","+")))
+
+    for i in range(1000):
+        browser.execute_script("window.scrollBy(0,10000)")
+    soup = browser.page_source
+    browser.quit()
+
+    sources = []
+    all_cleared = False
+    while all_cleared == False:
+        start_index = soup.find("https://encrypted-tbn0.gstatic.com/images?q=tbn")      # finds index of string containing this substring
+        print(str(start_index))
+        if start_index == -1:
+            break
+        end_of_string = False
+        jump_index = 1
+        while end_of_string == False:                                               # loop to find the rest of the url
+
+            #print(soup[start_index+jump_index])
+            if soup[start_index+jump_index] == ";":
+                sources.append(soup[start_index:start_index+jump_index])            # add the link to sources
+                end_of_string = True
+                soup = soup[start_index+jump_index:]            # cuts the string so it's only the contents following the link
+                #print(len(sources))
+            else:
+                jump_index += 1
     
+    
+    print("Found " + str(len(sources))+" links.")
+    folder = "google_big_"+search_query.replace(" ","_")
+    path = str(os.getcwd()) + "\\" + str(folder)
+    if os.path.isdir(path) == False:
+        os.mkdir(folder)
+        print("Creating folder \"folder\"...")
+    os.chdir(path)
+
+    print("Saving photos...")
+    for files in sources:
+        urlretrieve(files,str(files[54:]+".jpg"))

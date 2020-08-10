@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium import *
+from bs4 import BeautifulSoup
 import os
 import time
 
@@ -13,24 +14,54 @@ import time
 browser = webdriver.Chrome(executable_path=os.getcwd()+"\chromedriver.exe")
 browser.get("https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q=test&oq=test&gs_l=img")
 
-html = browser.page_source
-print(html)
-f = open("fuck.txt","x",encoding="utf-8")
-f.write(html)
-f.close()
-time.sleep(6)
-browser.execute_script("window.scrollBy(0,10000)")
+for i in range(500):
+    if i == 250:
+        browser.find_element_by_id("smb").clock()
+    browser.execute_script("window.scrollBy(0,10000)")
+
 soup = browser.page_source
-f = open("shit.txt","x",encoding="utf-8")
-f.write(soup)
-f.close()
+
+#soup = BeautifulSoup(soup, "html.parser")
+
+sources = []
+all_cleared = False
+while all_cleared == False:
+    start_index = soup.find("https://encrypted-tbn0.gstatic.com/images?q=tbn")      # finds index of string containing this substring
+    print(str(start_index))
+    if start_index == -1:
+        break
+    end_of_string = False
+    jump_index = 1
+    while end_of_string == False:                                               # loop to find the rest of the url
+
+        #print(soup[start_index+jump_index])
+        if soup[start_index+jump_index] == ";":
+            sources.append(soup[start_index:start_index+jump_index])            # add the link to sources
+            end_of_string = True
+            soup = soup[start_index+jump_index:]            # cuts the string so it's only the contents following the link
+            #print(len(sources))
+        else:
+            jump_index += 1
+
+print("done! with "+str(len(sources))+" urls")
+
+print("\n\n")
+print(sources)
+    
+            
+            
 
 
-print(soup)
-print(html == soup)
-print(html > soup)
-print(html >= soup)
-print(html is soup)
+#print(soup)
+# for i in soup:
+#     for j in i:
+#         print("\n\n\n")
+#         print(j)
+#     break
+#soup.find_all(as="image")
+
+
+
 
 # sources = []
 # for image in soup.select("img"):
